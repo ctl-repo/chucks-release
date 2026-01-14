@@ -1,0 +1,19 @@
+apply plugin: 'com.android.library'
+apply plugin: 'org.jetbrains.kotlin.android'
+
+android {
+    compileSdk rootProject.ext.compileSdk
+
+    defaultConfig {
+        minSdk rootProject.ext.minSdk
+        targetSdk rootProject.ext.targetSdk
+    }
+
+    namespace 'com.readystatesoftware.chuck'
+}
+
+dependencies {
+    implementation "com.squareup.okhttp3:okhttp:5.3.2"
+    implementation "androidx.core:core-ktx:1.17.0"
+}
+
