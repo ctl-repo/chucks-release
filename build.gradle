@@ -1,15 +1,28 @@
-apply plugin: 'com.android.library'
-apply plugin: 'org.jetbrains.kotlin.android'
+plugins {
+    id "com.android.library" version "8.3.2"
+    id "org.jetbrains.kotlin.android" version "2.2.21"
+    id 'maven-publish'
+}
 
 android {
-    compileSdk rootProject.ext.compileSdk
+    namespace "com.readystatesoftware.chuck"
+
+    compileSdk 36
 
     defaultConfig {
-        minSdk rootProject.ext.minSdk
-        targetSdk rootProject.ext.targetSdk
+        minSdk 24
+        targetSdk 36
+        consumerProguardFiles "proguard-rules.pro"
     }
 
-    namespace 'com.readystatesoftware.chuck'
+    /**
+     * REQUIRED for publishing Android libraries
+     */
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
 }
 
 dependencies {
@@ -17,3 +30,25 @@ dependencies {
     implementation "androidx.core:core-ktx:1.17.0"
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+/**
+ * Maven / JitPack publishing
+ */
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = "com.github.ctl-repo"
+            artifactId = "chucks-release"
+            version = "1.0.0"
+
+            afterEvaluate {
+                from components.release
+            }
+        }
+    }
+}
