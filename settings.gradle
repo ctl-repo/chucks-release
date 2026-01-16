@@ -1,0 +1,25 @@
+include ':app'
+include ':xroot'
+include ':chucks-release'
+include ':xfile-explorer'
+include ':chatmm'
+project(':chatmm').projectDir = new File(rootDir, 'likeminds-chat-android-community-archV1/chatmm/')
+/*
+To download the code execute following line in terminal
+
+//for like-mind
+> git submodule add https://github.com/ctl-repo/likeminds-chat-android-community-archV1
+
+//for chucks-debug
+git submodule add https://github.com/ctl-repo/chucks-debug.git chucks-debug
+
+//for chucks-release
+git submodule add https://github.com/ctl-repo/chucks-release.git chucks-release
+
+For further info refer this link: https://docs.likeminds.community/chat/android/getting-started
+
+
+** For Deleting existing repo of Likeminds-chat **
+Delete /../jiffy_android/.git/modules/likeminds-chat-android-community-archV1 folder
+> git rm --cached likeminds-chat-android-community-archV1
+*/
